@@ -12,12 +12,13 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public class TimeServer {
     public static void main(String[] args) {
         int port = 8080;
-
+        System.out.println("服务端启动");
         try {
             new TimeServer().bind(port);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("服务器关闭");
     }
 
     public void bind(int port) throws Exception {

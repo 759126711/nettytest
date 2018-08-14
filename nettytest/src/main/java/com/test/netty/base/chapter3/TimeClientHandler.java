@@ -7,9 +7,11 @@ import io.netty.channel.ChannelHandlerContext;
 
 public class TimeClientHandler extends ChannelHandlerAdapter {
     private  ByteBuf firstMEsg = null;
+    
     public TimeClientHandler () {
         byte[] req = "QUERY TIME ORDER".getBytes();
         firstMEsg = Unpooled.buffer(req.length);
+        // 向服务器端发送消息
         firstMEsg.writeBytes(req);
     }
     @Override
