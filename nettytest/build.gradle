@@ -7,16 +7,6 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
-idea {
-    module {
-        // if you hate browsing Javadoc
-        downloadJavadoc = true
-
-        // and love reading sources :)
-        downloadSources = true
-    }
-}
-
 repositories {
     mavenCentral()
 }
