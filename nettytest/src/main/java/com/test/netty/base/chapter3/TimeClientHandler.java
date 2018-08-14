@@ -11,7 +11,7 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
     public TimeClientHandler () {
         byte[] req = "QUERY TIME ORDER".getBytes();
         firstMEsg = Unpooled.buffer(req.length);
-        // 向服务器端发送消息
+        // 序列化消息
         firstMEsg.writeBytes(req);
     }
     @Override
@@ -19,11 +19,13 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
         super.exceptionCaught(ctx, cause);
     }
 
+    //向服务器端发送信息
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         ctx.writeAndFlush(firstMEsg);
     }
 
+    // 处理服务器端返回的数据
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf buf = (ByteBuf) msg;
