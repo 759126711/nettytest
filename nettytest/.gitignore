@@ -1,0 +1,42 @@
+﻿node_modules
+youshang-scm-web/src/main/webapp/new/node_modules/
+youshang-scm-web/src/main/webapp/new/dist/
+npm-debug.log
+*.sublime-workspace
+
+# 忽略 vim 缓存文件
+*.swp
+*.un~
+
+# maven #
+target
+
+# gradle #
+.gradle
+build
+out
+
+# eclipse #
+.settings
+.project
+.classpath
+.log
+.metadata
+*.class
+.externalToolBuilders
+# idea #
+out
+*.iml
+.idea/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+/target
+
+#Tomcat
+.recommenders
+RemoteSystemsTempFiles
+Servers
+out
