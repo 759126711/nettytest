@@ -6,13 +6,22 @@ import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.util.Date;
+/**
+ *
+ * 核心是这个handler;
+ *
+ *
+ */
 
 public class TimeServerHandler extends ChannelHandlerAdapter {
+    /**  处理异常 */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         ctx.close();
     }
 
+
+    /**  用于接收客户端传送过来的消息，并且调用ctx的write()方法返回给客户端 */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 
