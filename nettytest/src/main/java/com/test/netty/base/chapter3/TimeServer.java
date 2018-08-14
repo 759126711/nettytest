@@ -1,6 +1,7 @@
 package com.test.netty.base.chapter3;
 
 
+import com.sun.org.apache.xpath.internal.operations.Number;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -12,7 +13,13 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 public class TimeServer {
     public static void main(String[] args) {
+        int port = 8080;
 
+        try {
+            new TimeServer().bind(port);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void bind(int port) throws Exception {
@@ -23,7 +30,7 @@ public class TimeServer {
             ServerBootstrap boot = new ServerBootstrap();
             boot.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 1024)
-                    .childHandler(new ChildChannel());
+                    .childHandler(new ChildChannelHandler());
             // 绑定端口，同步等待成功
             ChannelFuture f = boot.bind(port).sync();
             // 等待服务端监听端口关闭
@@ -36,7 +43,7 @@ public class TimeServer {
         }
     }
 
-    private class ChildChannel extends ChannelInitializer<SocketChannel> {
+    private class ChildChannelHandler extends ChannelInitializer<SocketChannel> {
         @Override
         protected void initChannel(SocketChannel ch) throws Exception {
             ch.pipeline().addLast(new TimeServerHandler());
