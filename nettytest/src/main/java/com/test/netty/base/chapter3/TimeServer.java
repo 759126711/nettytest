@@ -1,7 +1,5 @@
 package com.test.netty.base.chapter3;
 
-
-import com.sun.org.apache.xpath.internal.operations.Number;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
