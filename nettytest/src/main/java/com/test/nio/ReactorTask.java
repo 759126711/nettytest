@@ -1,6 +1,6 @@
 package com.test.nio;
 
-public class ReactorTask implements  Runnable ,Test {
+public class ReactorTask implements Runnable, Test {
     @Override
     public void run() {
 

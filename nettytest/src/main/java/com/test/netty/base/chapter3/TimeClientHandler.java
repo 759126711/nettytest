@@ -6,14 +6,15 @@ import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
 public class TimeClientHandler extends ChannelHandlerAdapter {
-    private  ByteBuf firstMEsg = null;
-    
-    public TimeClientHandler () {
+    private ByteBuf firstMEsg = null;
+
+    public TimeClientHandler() {
         byte[] req = "QUERY TIME ORDER".getBytes();
         firstMEsg = Unpooled.buffer(req.length);
         // 序列化消息
         firstMEsg.writeBytes(req);
     }
+
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         super.exceptionCaught(ctx, cause);
@@ -31,7 +32,7 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
         ByteBuf buf = (ByteBuf) msg;
         byte[] req = new byte[buf.readableBytes()];
         buf.readBytes(req);
-        String body = new String(req,"UTF-8");
+        String body = new String(req, "UTF-8");
         System.out.println("Now is:" + body);
     }
 }

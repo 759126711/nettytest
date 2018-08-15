@@ -10,6 +10,18 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 public class TimeClient {
+    public static void main(String[] args) {
+        int port = 8080;
+        System.out.println("客户端启动");
+        try {
+            new TimeClient().connect(port, "127.0.0.1");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("连接服务器错误");
+        }
+        System.out.println("客户端结束");
+    }
+
     public void connect(int port, String host) throws Exception {
         // 配置客户端NIO线程组
         EventLoopGroup group = new NioEventLoopGroup();
@@ -25,26 +37,14 @@ public class TimeClient {
             f.channel().closeFuture().sync();
 
         } catch (Exception e) {
-            System.out.println("error: "+e.getMessage());
+            System.out.println("error: " + e.getMessage());
         } finally {
             // 优雅退出，释放NIO线程组
             group.shutdownGracefully();
         }
     }
 
-    public static void main(String[] args) {
-        int port = 8080;
-        System.out.println("客户端启动");
-        try {
-            new TimeClient().connect(port,"127.0.0.1");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("连接服务器错误");
-        }
-        System.out.println("客户端结束");
-    }
-
-    private class ChannelInit extends ChannelInitializer<SocketChannel>  {
+    private class ChannelInit extends ChannelInitializer<SocketChannel> {
         @Override
         protected void initChannel(SocketChannel ch) throws Exception {
             ch.pipeline().addLast(new TimeClientHandler());
