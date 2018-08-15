@@ -39,6 +39,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         ctx.flush();
     }
 
+    @Override
     protected void messageReceived(ChannelHandlerContext ctx, Object msg) throws Exception {
         // 传统的http接入
         if (msg instanceof FullHttpRequest) {
@@ -87,10 +88,11 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         }
 
         // 返回应答消息
-        String request = ((TextWebSocketFrame) frame).text();
-        System.out.println("接收到消息 " + ctx.channel() + request.toString());
+        String msg = ((TextWebSocketFrame) frame).text();
+        System.out.println("接收到消息 " + ctx.channel() + msg);
 
-        ctx.channel().write(new TextWebSocketFrame(request + ", 欢迎使用netty websocket服务，现在时间:" + new Date().toString()));
+        // 这里发送消息给客户端
+        ctx.channel().write(new TextWebSocketFrame(msg + ", 欢迎使用netty websocket服务，现在时间:" + new Date().toString()));
 
     }
 
