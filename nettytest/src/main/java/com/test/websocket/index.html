@@ -22,7 +22,7 @@ if (window.WebSocket) {
 	};
 	socket.onopen = function(event) {
 		var ta = document.getElementById('responseText');
-		ta.value = "it is noramal to open the explorer£¬it supports webSocket!";
+		ta.value = "it is noramal to open the explorer, it supports webSocket!";
 	};
 	socket.onclose = function(event) {
 		var ta = document.getElementById('responseText');
@@ -32,7 +32,7 @@ if (window.WebSocket) {
 }
 else
 	{
-	alert("sorry£¬your explorer does not support WebSocket protocal !");
+	alert("sorryï¿½ï¿½your explorer does not support WebSocket protocal !");
 	}
 
 function send(message) {
