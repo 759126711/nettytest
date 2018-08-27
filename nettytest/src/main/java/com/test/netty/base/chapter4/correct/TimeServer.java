@@ -74,6 +74,7 @@ public class TimeServer {
     private class ChildChannelHandler extends ChannelInitializer<SocketChannel> {
         @Override
         protected void initChannel(SocketChannel arg0) throws Exception {
+            // 服务器端ChannelPipeline必须要加编码器再加解码器，客户端的添加顺序相反。
             arg0.pipeline().addLast(new LineBasedFrameDecoder(1024));
             arg0.pipeline().addLast(new StringDecoder());
             arg0.pipeline().addLast(new TimeServerHandler());
