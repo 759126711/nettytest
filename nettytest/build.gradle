@@ -15,4 +15,5 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'io.netty', name: 'netty-all', version: '5.0.0.Alpha1'
     compile group: 'org.msgpack', name: 'msgpack', version: '0.6.12'
+    compile group: 'javax.websocket', name: 'javax.websocket-api', version: '1.1'
 }
